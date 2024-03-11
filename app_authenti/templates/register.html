@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %} Création de compte {% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="col-md-12 mt-5 mb-5">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alerte alert-danger text-center"><strong>{{message}}</strong></div>
+            {% endfor %}
+            {% endif %}
+            <form action="" method="POST" novalidate> 
+                {% csrf_token %}
+                <div class="card">
+                    <div class="card-header text-center"><i class="fas fa-user-lock"></i>Créer votre Compte!</div>
+                    <div class="card-body">
+                        {{form}}
+                        <!-- <input type="text" placeholder="Nom d'utilisateur" name="username" class="form-control mb-2 "required>
+                        <input type="password" placeholder="Mot de passe" name="pwd" class="form-control" required> -->
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-block">Créer</button>
+                    </div>
+    
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock%}

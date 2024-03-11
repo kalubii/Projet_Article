@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h2>Liste des recherches</h2>
+    <div class="row"> 
+        {% for article in liste_article %}
+        <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+            <div class="card mb-3">
+              
+              <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
+                <a href="{% url 'detail' article.id %}"><img src="{{ article.image.url}}" class="img-fluid"/></a>
+                <a href="#!">
+                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </a>
+                  </div>
+              <div class="card-body">
+                <h5 class="card-title"><a href="{% url 'detail' article.id %}">{{article.title}} </a></h5>
+    
+                <p class="card-text">{{article.descript|truncatewords:8}} </p>
+                <p class="card-text">Publié il y a :{{article.created_at|timesince}} </p>
+                <a href="{% url 'detail' article.id %}" class="btn btn-danger" data-mdb-ripple-init>Lire</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+    
+</div>
+
+{% endblock %}

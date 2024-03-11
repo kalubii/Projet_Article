@@ -1,0 +1,33 @@
+{% extends  'base.html' %}
+
+{% block content %}
+     <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 class="text-center mt-3">Details Articles</h1>
+                <img src="{{article.image.url}}" alt="" style="max-width:500px;">
+                <h2>{{article.title}}</h2>
+                <p>{{article.descript}}</p>
+            </div>
+            <div class="col-md-4">
+                <h3 class="mt-3">Articles En Relations</h3>
+                <div class="row">
+                    {% for art in aer %}
+                    {% if art.id != article.id %}
+                    <div class="col-md-7 mb-2">
+                        <img src="{{art.image.url}}" alt="" style="max-width: 210px;">
+                    </div>
+                    <div class="col-5">
+                        <strong>{{art.title}}</strong><br>
+                        {{art.descript|truncatewords:7}}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                
+            </div>
+        </div>
+     </div>   
+{% endblock %}
+
+ 
