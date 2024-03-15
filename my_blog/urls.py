@@ -20,16 +20,25 @@ from django.conf import settings
 from django.conf.urls.static import static
 from blog.views import home,detail,search
 from app_authenti.views import login_blog,register,logout
+from app_admin.views import dashboard,user_article,AddArticle,UpdateArticle,DeleteArticle
  
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home,name="home"),
+    path('',login_blog,name="login"),
+    path('home/', home,name="home"),
     path('article/<int:id_article>/',detail,name="detail"),
     path('article/recherche/',search,name="search"),
-    path('login/',login_blog,name="login"),
     path('register/',register,name="register"),
     path('logout/',logout,name="logout"),
+    path('dashboard/',dashboard,name="dashboard"),
+    path('my-articles/', user_article, name='my_articles'), 
+    #path('user_article/',user_article,name="user_article"),
+    path('ajouter-article/',AddArticle.as_view(),name='ajouter_article'),
+    path('my-articles/update-article/<int:pk>/',UpdateArticle.as_view(),name='update_article'),
+    path('my-articles/delete-article/<int:pk>/',DeleteArticle.as_view(),name='delete_article'),
     path('authenti/',include('app_authenti.urls')),
+    
+    #path('admin/',include('app_admin.urls')),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
 #http://127.0.0.1:8000/article/3 => detail(request,id_article=3)
